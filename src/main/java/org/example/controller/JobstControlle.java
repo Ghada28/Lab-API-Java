@@ -4,27 +4,34 @@ import jakarta.ws.rs.core.MediaType;
 import org.example.dao.JobDAO;
 import org.example.models.Jobs;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 
+
+
 @Path("/Jobs")
-public class DepartmentControlle {
+public class JobstControlle {
   JobDAO dao =  new JobDAO() ;
 
+    @GET
+    @Produces ({MediaType.APPLICATION_ATOM_XML, MediaType.APPLICATION_ATOM_XML})
+    public ArrayList<Jobs> getAllJobs(
+            @QueryParam("main_salary") Double main_salary,
+            @QueryParam("limit") Integer limit,
+            @QueryParam("offset") int offset
+    ) {
+        try {
+            return dao.selectAllJobs(main_salary, limit, offset);
 
-  @GET
-  public ArrayList<Jobs> getAllDepartments() {
 
-      try {
-          return dao.selectAllJobs();
-      } catch (Exception e) {
-          throw new RuntimeException(e);
-      }
-  }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @GET
     @Path("{Job_id}")
-    public Jobs getDepartment(@PathParam("deptId") int Job_id) {
+    public Jobs getJobs(@PathParam("deptId") int Job_id) {
 
         try {
             return dao.selectJob(Job_id);
@@ -35,7 +42,7 @@ public class DepartmentControlle {
 
     @DELETE
     @Path("{Job_id}")
-    public void deleteDepartment(@PathParam("Job_id") int Job_id) {
+    public void deleteJobs(@PathParam("Job_id") int Job_id) {
 
         try {
             dao.deleteJob(Job_id);
@@ -54,7 +61,7 @@ public class DepartmentControlle {
     }
     @PUT
     @Path("{Job_id}")
-    public void updateDepartment(@PathParam("Job_id") int Job_id, Jobs J) {
+    public void updateJobs(@PathParam("Job_id") int Job_id, Jobs J) {
 
         try {
             J.setJob_id(Job_id);
