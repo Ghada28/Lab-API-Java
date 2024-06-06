@@ -6,30 +6,28 @@ public class JobFilterDto {
     private @QueryParam("limit") Integer limit;
     private @QueryParam("offset") int offset;
 
-    public double getLocId() {
-        return main_salary;
-    }
-
-    public void setMain_salary(double main_salary) {
-        this.main_salary = main_salary;
-    }
-
     public Integer getLimit() {
         return limit;
-    }
-
-    public void setLimit(Integer limit) {
-        this.limit = limit;
     }
 
     public int getOffset() {
         return offset;
     }
 
+    public Double getMin_salary() {
+        return main_salary;
+    }
+
+    public void setMin_salary(Double min_salary) {
+        this.main_salary = min_salary;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
     public void setOffset(int offset) {
         this.offset = offset;
     }
 }
-
-
 

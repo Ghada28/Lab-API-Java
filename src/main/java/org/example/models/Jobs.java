@@ -7,13 +7,8 @@ public class Jobs {
     private double min_sal;
     private double max_sal;
 
-     public Jobs(String Job_title, int Job_id, double min_sal, double max_sal  ){
-         this.Job_title = Job_title;
-         this.Job_id = Job_id;
-         this.min_sal=min_sal;
-         this.max_sal=max_sal;
 
-     }
+
      public Jobs (ResultSet rs) throws SQLException {
          Job_title = rs.getNString("Job_title");
          Job_id = rs.getInt("Job_id");
